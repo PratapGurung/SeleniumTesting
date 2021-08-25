@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +23,6 @@ public class UserController {
 
 	@PostMapping("save_user")
 	public String saveUser(@ModelAttribute User user) {
-		System.out.println(user.getUsername());
 		userservice.saveUser(user);
 		return "redirect:/list_user";
 	}
@@ -33,10 +30,6 @@ public class UserController {
 	@GetMapping("list_user")
 	public String getAllUser(Model model) {
 		model.addAttribute("users", userservice.getAllUser());
-		List<User> users = userservice.getAllUser();
-		for (User u : users) {
-			System.out.println(u.getId());
-		}
 		return "listUser";
 	}
 }
